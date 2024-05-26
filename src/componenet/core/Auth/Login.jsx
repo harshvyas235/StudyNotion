@@ -4,12 +4,17 @@ import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import {AiOutlineEye} from 'react-icons/ai'
 import zigzag from '../../../assets/Images/frame.png';
 import login from '../../../assets/Images/login.webp'
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { LoginData } from '../../../Services/operation/authAPI';
 
 export const Login = () => {
  
     // const [formdata,setformdata]= useState[{email:"",password:""}]
     const [formData,setformdata]= useState({email:"", password:""})
     const [showpass, setShow]= useState(true);
+    const dispatch= useDispatch()
+    const navigate = useNavigate()
      
     const changeHandler =(event)=>{
         // const [name]=event.target.value
@@ -24,6 +29,7 @@ export const Login = () => {
     }
     const submitdata=(e)=>{
       e.preventDefault()
+      dispatch(LoginData(formData.email,formData.password,navigate))
 
             console.log(formData);
     }
@@ -83,7 +89,7 @@ export const Login = () => {
               }
               className='bg-richblack-800 text-richblack-5 py-[12px] rounded-lg w-full  p-[12px] pr-12'
             />
-              <div className=' w-[30px] h-[14px] absolute translate-x-[400px] bottom-6 '  >
+              <div className=' w-[30px] h-[14px] absolute translate-x-[400px] bottom-11'  >
               {
                 showpass?
                 <AiOutlineEyeInvisible className='w-[38px] h-[30px] text-[#838894] ' onClick={()=>{setShow(!showpass)}} />:
@@ -91,6 +97,8 @@ export const Login = () => {
                 <AiOutlineEye  className='w-[38px] h-[30px] text-[#838894] ' onClick={()=>{setShow(!showpass)}}/>
               }
             </div>
+            <Link to={'/forgot-password'}>
+            <p className='text-[#47A5C5]  text-sm pt-[2px]'>Forgot password </p></Link>
             </div>
            
           

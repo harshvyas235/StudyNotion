@@ -108,6 +108,7 @@ try{
         success:true,
         message:"user found",
         data:detail,
+        user:req.user
     })
 
 } catch(err){

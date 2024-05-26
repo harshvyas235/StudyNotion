@@ -11,10 +11,14 @@ import { categoriesApI } from '../../Services/apis'
 
 
 
+
 export const Navbar = () => {
+  const timepass = useSelector((state)=>state.profile)
+  
 
   const {token}= useSelector((state)=> state.auth);
   const {user}= useSelector((state)=> state.profile)
+  console.log("timepass",timepass,user)
   const {cart}= useSelector((state)=> state.cart);
   const location = useLocation();
   const [cat_api, setApi]= useState([]);
@@ -24,7 +28,7 @@ export const Navbar = () => {
 
   const fethApi = async()=>{
          try{
-          const result = await apiconnector("GET","http://localhost:4000/api/v1/course/showAllCategories")
+          const result = await apiconnector("GET",categoriesApI.show_ALL_Categories)
           console.log("printing the result of the api ", result.data.data);
           setApi(result.data.data)
          
@@ -43,11 +47,11 @@ export const Navbar = () => {
 
 
   return (
-    <div className=' flex max-w-full px-[120px] py-[12px] border-b bg-richblack-800 m-auto border-richblack-700 border-solid '>
+    <div className=' flex max-w-full px-[120px] py-[12px] border-b  m-auto border-richblack-700 border-solid '>
     <div className='w-[160px] h-[32px]'>
       <img src={logo}></img>
     </div>
-    <div className=' text-[white] flex items-center justify-center w-[816px]'>
+    <div className=' text-[#DBDDEA] text-base font-normal flex items-center justify-center w-[816px]'>
       {
         NavbarLinks.map((link,index)=>(
           
@@ -55,7 +59,7 @@ export const Navbar = () => {
             <div className=' px-[12px] flex items-center gap-1 relative group'>
               <p>{link.title}</p>
               <IoIosArrowDropdownCircle/>
-              <div className=' rounded-md bg-white w-[300px] h-24 absolute top-[33px] z-30 translate-x-[-90px]  invisible group-hover:visible transition-all duration-1000 '>
+              <div className=' rounded-md bg-white w-[300px] h-24 absolute top-[33px] z-30 translate-x-[-90px]  invisible group-hover:visible transition-all duration-75 '>
               <div className=' rounded bg-white w-[30px] h-[30px] absolute translate-x-[140px] top-[-10px] rotate-45'>
                
               </div>
@@ -130,6 +134,11 @@ export const Navbar = () => {
        )
 
     }
+
+            {
+                token != null && <div className='text-white'>profile drop down</div>
+            }
+            
 
 
 

@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt")
 require("dotenv").config();
 const jwt= require("jsonwebtoken")
 const mailSender= require("../utils/mailSender")
-const Profile= require("../model/profile")
+const Profile= require("../model/profile") 
 
 exports.optGen= async (req,res)=>{
     try{
@@ -186,7 +186,7 @@ exports.login=async(req,res)=>{
     console.log(user)
     user.password=undefined;
     const options = {
-        expires : new Date(Date.now() + 1 * 60 * 1000),
+        expires : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
     };
     res.cookie("token",token,options).status(200).json({

@@ -8,8 +8,8 @@ exports.auth= async(req,res,next)=>{
         const token = req.cookies.token 
         || req.body.token 
         || req.header("Authorisation").replace("Bearer ", "");
-        if(!token||token==undefined){
-            res.status(500).json({
+        if(token==undefined||!token){
+           return res.status(500).json({
                 success:false,
                 message:"token is undefine"
             })
@@ -32,6 +32,7 @@ exports.auth= async(req,res,next)=>{
         return res.status(401).json({
             success:false,
             message:'Something went wrong, while verifying the token',
+            
             error:error.message,
         });
     }

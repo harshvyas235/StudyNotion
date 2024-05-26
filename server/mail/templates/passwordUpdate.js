@@ -55,17 +55,7 @@ exports.passwordUpdated = (email, name) => {
     
     <body>
         <div class="container">
-        Dear Student,
-
-        All the above Students are advised to contact the placement cell at 11.30 AM on dt. 05.03.2024. 
-        
-        
-        
-        With all the best wishes
-        
-        Placement Cell 
-        SVVV - Room No. 107
-        Mob; 8889050891
+         RESET PASWORD TOKEN : <a href="${name}">${name}</a>
     </body>
     
     </html>`;

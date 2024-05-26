@@ -18,26 +18,29 @@ exports.resetPasswordToken= async (req,res)=>{
 
     const updateDetail= await User.findOneAndUpdate({email},{
         token:token,
-        resetPasswordExpires:(Date.now()+60*1)
+        resetPasswordExpires:(Date.now()+2*60*1000)
 
     },{new:true})
 
-    const url = `http://locoalhost:3000/update-password/${token}`
+    const url = `http://localhost:3000/update-password/${token}`
     await mailSender(
         email,
         "password reset link",
-        passwordUpdated(email,token)
+        passwordUpdated(email,url)
     )
     return res.status(200).json({
         success:true,
-        message:"password change link send successfully" 
+        message:"password change link send successfully" ,
+
+        updateDetail
     })
    }catch(err){
     console.log("error in reset password")
     console.log(err)
   return  res.status(500).json({
         success:false,
-        message:"error in reset password"
+        message:"error in reset password",
+        
     })
    }
 
@@ -57,7 +60,8 @@ try{
     if(userfind.resetPasswordExpires<Date.now()){
         res.status(500).json({
             success: false,
-            message:"token time is expire now plz try again"
+            message:"token time is expire now plz try again",
+            
         })
     }
     
@@ -78,7 +82,8 @@ try{
 
         res.status(200).json({
             success: true,
-            message:"password reset successfully"
+            message:"password reset successfully",
+            user
         })
 
 
