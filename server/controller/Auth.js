@@ -159,39 +159,40 @@ exports.login=async(req,res)=>{
 ,           message:"plz fill all the detail"
         })
     }
-    const emailcheck= await User.findOne({email:email})
+    const user= await User.findOne({email:email})
     console.log("user aa gya")
-    console.log(emailcheck)
+    console.log(user)
    
-    if(!emailcheck){
+    if(!user){
        return res.status(404).json({
             success:false,
             message:"plz sing up your email first"
         })
     }
    const  payload={
-    email: emailcheck.email,
-    accountType:emailcheck.accountType,
-    id:emailcheck._id
+    email: user.email,
+    accountType:user.accountType,
+    id:user._id
          
      }
   
 
-  if( await bcrypt.compare(password,emailcheck.password)){
+  if( await bcrypt.compare(password,user.password)){
     console.log("password compare ho gya successfully")
-    const token = jwt.sign(payload,process.env.JWT_SECRET,{expiresIn : "24h"
+    const token = jwt.sign(payload,process.env.JWT_SECRET,{expiresIn : "24hr"
     })
 
-    emailcheck.token=token;
-    emailcheck.password=undefined;
+    user.token=token
+    console.log(user)
+    user.password=undefined;
     const options = {
-        expires : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        expires : new Date(Date.now() + 1 * 60 * 1000),
         httpOnly: true,
     };
     res.cookie("token",token,options).status(200).json({
         success:true,
     message:"cookie created successfull",
-    emailcheck,
+    user,
     token
     })
   }

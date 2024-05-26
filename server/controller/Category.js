@@ -27,22 +27,25 @@ exports.createCategory=async(req,res)=>{
    
 }
 
-exports.showallCategories= async(res,req)=>{
-    try
-    {
+exports.showallCategories= async(req,res)=>{
+    try {
+    console.log("ab apn sari categories dekhenge ")
    const alltags = await Category.find({},{name:true,discription:true})
-   res.stataus(200).json({ 
-    success:true,
-    message:"all tags fetch successfully",
-    alltags
-   })
+   
+   res.status(200).json({
+	success:true,
+	message:"category get all successfully",
+	data:alltags
+})
+	}
+catch(err){
 
-    }catch(err){
-        res.status(500).json({
-            success:false,
-            message:"error in fetching the tags"
-        })
-    }
+	return  res.status(500).json({
+			 success:false,
+			 message:"error in fetching the tags"
+		 })
+
+ }
 }
 
 

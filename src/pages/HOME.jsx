@@ -14,6 +14,12 @@ import timelineImg from '../assets/Images/TimelineImage.png'
 import { Filtercard } from '../componenet/core/HomePage/Filtercard'
 import { Card } from '../componenet/core/HomePage/Card'
 import { HomePageExplore } from '../data/homepage-explore'
+import instructor from '../assets/Images/Instructor.png'
+import Plan_your from '../assets/Images/Plan_your_lessons.png'
+import Know_your from '../assets/Images/Know_your_progress.png'
+import compare_your from '../assets/Images/Compare_with_others.png'
+
+
 
 
 const HomeData = [
@@ -62,10 +68,10 @@ export const HOME = () => {
 
                 </Link>
 
-                <div className='flex flex-col gap-[16px] w-[913px]  items-center my-9'>
-                    <div className=' text-[36px] font-semibold '>Empower Your Future With <HIGHLIGHT text={"Coding Skills"}></HIGHLIGHT></div>
+                <div className='flex flex-col gap-[16px]  items-center my-9'>
+                    <div className=' text-3xl  lg:text-[36px] font-semibold '>Empower Your Future With <HIGHLIGHT text={"Coding Skills"}></HIGHLIGHT></div>
 
-                    <div className=' max-w-[913px] font-medium  text-base text-[#838894]'>With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.</div>
+                    <div className='max-w-[358px] lg:max-w-[913px] font-medium  text-base text-[#838894]'>With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.</div>
                 </div>
 
                 <div className='flex  gap-6'>
@@ -89,6 +95,7 @@ export const HOME = () => {
                                 <p>Unlock your <HIGHLIGHT text={"coding potential"}></HIGHLIGHT> with our online courses.</p>
                             </div>
                         }
+                        Fchange={true}
                         subheading={"Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."}
                         clickbtn1={
                             {
@@ -108,7 +115,7 @@ export const HOME = () => {
                                 children: "Learn More"
                             }
                         }
-                        code={`<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>\n`}
+                        code={`<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.\ncss">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>\n`}
                         codeColor={"text-[#0C6A87]"}
                         background={<div className="codeblock1 absolute"></div>}
                     ></CodeBlocks>
@@ -150,7 +157,7 @@ export const HOME = () => {
             <div className='bg-white' >
 
                 <div className={`bg-[url('http://localhost:3000/static/media/bghome.de04eae287ff1d29f0b1f000c15252a2.svg')] w-full h-[254px] flex justify-center items-center gap-6 `}>
-                    <div className='pt-8'>
+                    <div className='pt-8 '>
                         <BUTTON link={"/signUp"} active={true} className="" >
                             <div className='flex gap-2 items-center w-fit'>
                                 <p>Explore Full Catalog </p>
@@ -249,15 +256,61 @@ export const HOME = () => {
                 </div>
 
 
-                <Filtercard  categories={setCat} courses={setCourse}></Filtercard>
-                
-                <Card courses={course} ></Card>
-                
+                {/* <Filtercard  categories={setCat} courses={setCourse}></Filtercard><Card courses={course} ></Card> */}
+
+                <div className='w-11/12 m-auto flex flex-col justify-center items-center gap-[52px] my-[90px] '>
+                <div className='flex flex-col items-center w-[60%]  gap-4'>
+                    <p className='text-4xl font-bold'>Your swiss knife for <span><HIGHLIGHT text={"learning any language"}/></span></p>
+                    <p className=' max-w-[80%]'>Using spin making learning multiple languages easy. with 20+ languages realistic voice-over, progress tracking, custom schedule and more.</p>
+                </div>
+
+                <div className=' flex   relative w-[1000px] h-[360px] justify-center '>
+                    <img src={Know_your} className='h-[330px] absolute left-20 top-5 '/>
+                    <img src={compare_your} className='h-[370px] absolute'/>
+                    <img src={Plan_your} className='h-[340px] absolute right-24' />
+                </div>
+               <div className='mt-[36px]'>
+                <BUTTON active={true} link={'/signup'}>Learn more</BUTTON>
+               </div>
+                </div>
+
+             
                 
 
 
             </div>
 
+
+             {/* third section  */}
+
+            <div className='flex w w-11/12 m-auto justify-center my-[90px] gap-24'>
+                    <div className=' w-[500px]   shadow-[-20px_-20px_0px_0px_#F5F5F5] h-fit'>
+                       <img src={instructor}  />
+                    </div>
+
+
+                    <div className='flex  flex-col  items-start justify-center w-[500px] text-white gap-2 max-w-[486px]'>
+                    <div className='text-4xl font-inter '>
+                    <p>Become an</p>
+                    <HIGHLIGHT text={"instructor"}/>
+                    </div>
+                    <div></div>
+                    <p className='text-base text-[#838894] font-inter'>Instructors from around the world teach millions of students on StudyNotion. We provide the tools and skills to teach what you love.</p>
+                    <div className=' pt-[56px]'>
+                        <BUTTON active={true} link={'/signup'} >{
+                            <div className='flex items-center '>
+                            <p>Start teaching Today</p>
+                            <FaArrowRight/>
+                            </div>
+                        }</BUTTON>
+                    </div>
+                    
+
+                    
+
+                    </div>
+                </div>
+                
 
 
 

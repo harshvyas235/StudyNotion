@@ -117,3 +117,38 @@ return res.status(500).json({
 })
 }
 }
+
+
+exports.DeleteUSer= async(req,res)=>{
+    try{
+
+        const id = req.user.id;
+        const user= await User.findById({id:id});
+        if(!user){
+            return res.status(400).json({
+                success:false,
+                message:"user is not found"
+            })
+        }
+
+        const profileID = user.additionalDetails;
+        const deleteProfile= Profile.findByIdAndDelete({id:profileID});
+
+        // todo delete from the course enrolled 
+        // cron job , task sheduling 
+
+        await User.findByIdAndDelete({id:id});
+        return res.status(200).json({
+            success:true,
+            message:"user delete successfully"
+        })
+
+    }
+    catch(err){
+        return res.status(500).json({
+            success:false,
+            message:message.err,
+            errror:"user can not be deleted"
+        })
+        }
+}

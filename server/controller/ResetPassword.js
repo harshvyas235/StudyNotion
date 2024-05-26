@@ -18,7 +18,7 @@ exports.resetPasswordToken= async (req,res)=>{
 
     const updateDetail= await User.findOneAndUpdate({email},{
         token:token,
-        resetPasswordExpires:(Date.now()+5*60*60*1000)
+        resetPasswordExpires:(Date.now()+60*1)
 
     },{new:true})
 

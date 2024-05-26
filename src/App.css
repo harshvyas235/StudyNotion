@@ -5,6 +5,7 @@
 
 html,body{
    overflow-x: hidden;
+   scrollbar-width: hidden;
    /* overflow-y: hidden; */
 }
 * {
@@ -23,6 +24,7 @@ html,body{
   background-color: #afb2bf;
   border-radius: 10px;
   visibility: hidden;
+
 }
 
 .codeblock1 {

@@ -133,3 +133,9 @@ exports.getallrating= async(req,res)=>{
                       }).exec();
 
 }
+
+exports.getRatingCourse=async(req,res)=>{
+   const courseID= req.body.courseID;
+
+   const review = await RatingAndReview.findById({course : courseID}).populate({path:"user"}).populate({path :"course"})
+}
