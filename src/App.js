@@ -1,7 +1,7 @@
 import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
 import { HOME } from "./pages/HOME";
-// import { SignUP } from "./componenet/core/Auth/SignUP";
+import { SignUP } from "./componenet/core/Auth/SignUP";
 import { Navbar } from "./componenet/common/Navbar";
 import { Login } from "./componenet/core/Auth/Login";
 import { Resetpass } from "./componenet/core/Auth/Resetpass";
@@ -14,7 +14,7 @@ function App() {
 
     <Routes>
    <Route path="/" element={<HOME/>} />
-   {/* <Route path="/signUp" element={<SignUP/>}/> */}
+   <Route path="/signUp" element={<SignUP/>}/>
    <Route path="/login"   element={<Login/>}/>
    <Route path="/forgot-password" element={<Resetpass/>}/>
    <Route path="/update-password/:id" element={<UpdatePassword/>}/>

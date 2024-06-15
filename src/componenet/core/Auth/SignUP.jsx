@@ -2,6 +2,8 @@ import React from 'react'
 
 export const SignUP = () => {
   return (
-    <div>SignUP</div>
+    <div>
+      <div className='text-white bg-caribbeangreen-100'>this is the signup page </div>
+    </div>
   )
 }
