@@ -12,10 +12,10 @@ export const Tab = (props) => {
     
 
   return (
-      <div className=" flex gap-2">
+      <div className=" flex gap-[10px] items-center justify-center  h-[36px] text-base font-medium">
         {
             data.map((data)=>(
-                <div className={`${data.name===curr ? "text-caribbeangreen-200" : "text-white"} cursor-pointer`} onClick={()=>changeHandle(data.name)}>{data.name}</div>
+                <div className={`${data.name===curr ? "text-[#F1F2FF] bg-[#000814]   rounded-3xl py-[6px]  px-[18px] text-base font-medium" : "text-[#999DAA] px-[18px] cursor-pointer"}  `} onClick={()=>changeHandle(data.name)}>{data.name}</div>
             )
                 
             )
