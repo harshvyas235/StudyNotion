@@ -3,12 +3,17 @@ import React, { useState } from 'react'
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import {AiOutlineEye} from 'react-icons/ai'
 import { Tab } from './Tab'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BUTTON } from '../HomePage/BUTTON';
 import zigzag from '../../../assets/Images/frame.png';
 import signupImage from '../../../assets/Images/signup.webp'
+import { useDispatch } from 'react-redux';
+import { OtpSignUp } from '../../../Services/operation/authAPI';
+import { setSignupData } from '../../../Slice/authSlice';
+import toast from 'react-hot-toast';
 
 export const SignUP = () => {
+  // firstName,lastName,email,password,confirPassword,role,otp
   
   const data=[{
     name:'Student'
@@ -17,9 +22,14 @@ export const SignUP = () => {
   }]
 
   const [curr,change]= useState("Student")
+  const navigate = useNavigate();
 
-  const [formData,setformdata]= useState({ lastName:"",firstName:"",email:"", password:"",confirm:""})
+  const [formData,setformdata]= useState({ lastName:"",firstName:"",email:"", password:"",confirPassword:"",role:""}
+   
+  )
   const [showpass, setShow]= useState(true);
+  
+ 
 
   const changeHandler =(event)=>{
     // const [name]=event.target.value
@@ -31,11 +41,25 @@ export const SignUP = () => {
         
       }
     })
+    console.log(formData)
 }
 
+const dispatch = useDispatch();
 
-const submitdata=()=>{
-  return 
+const submitdata=(e)=>{
+    e.preventDefault();
+    formData.role=curr
+    if(formData.confirPassword!=formData.password){
+      toast.error("password and confirm doesnot match")
+      return
+    }
+    console.log("yha pr bhi signup data dekho ", formData,curr)
+    dispatch(setSignupData(formData))
+    dispatch(OtpSignUp(formData.email,navigate));
+    
+    
+    
+    console.log(formData);
 }
 
   
@@ -57,7 +81,7 @@ const submitdata=()=>{
 
           
 
-        <form className='w-[444px]'>
+        <form className='w-[444px]' onSubmit={submitdata}>
           <div className='flex flex-col gap-5'>
           <div className='flex gap-[6px] '>
           <div className='flex flex-col gap-[2px]'>
@@ -161,10 +185,10 @@ const submitdata=()=>{
             <div>
                   <input
               type={showpass?'password':'text'}
-              name='password'
+              name='confirPassword'
               placeholder='Enter Password'
               onChange={changeHandler}
-              value={formData.password}
+              value={formData.confirPassword}
               style={{
                 boxShadow: "0px -1px 0px 0px rgba(255, 255, 255, 0.18) inset"
                 
@@ -191,8 +215,9 @@ const submitdata=()=>{
 
           </div>
 
-
-          <div className='bg-[#FFD60A] text-[#000814] rounded-lg flex justify-center items-center  py-3 px-6 w-[444px]  h-auto'>Create Account</div>
+           <button type='submit' >
+           <div className='bg-[#FFD60A] text-[#000814] rounded-lg flex justify-center items-center  py-3 px-6 w-[444px]  h-auto'>Create Account</div>
+           </button>
 
           </div>
 

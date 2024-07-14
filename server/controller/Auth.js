@@ -10,15 +10,15 @@ const Profile= require("../model/profile")
 
 exports.optGen= async (req,res)=>{
     try{
-        const {email} = req.body
+        const {email} = req.body 
     const user =await User.findOne({email})
     if(user){
-        res.status(401).json({
+       return res.status(401).json({
             success:"flase",
             message:"this email is already exist"
         })
     }
-    var otp = otpGenrator.generate(6,{
+    var otp = otpGenrator.generate(6,{ 
         upperCaseAlphabets:false,
         lowerCaseAlphabets:false,
         specialChars:false
@@ -40,7 +40,7 @@ exports.optGen= async (req,res)=>{
     const otpCreate = await Otp.create(otpPayload)
     console.log(otpCreate)
 
-    res.status(200).json({
+    return res.status(200).json({
     success:"true",
     message:"otp create successfully",
     otpCreate
@@ -50,7 +50,7 @@ exports.optGen= async (req,res)=>{
     }catch(err){
 console.log("error in otp creation ")
 console.log(err)
-res.status(500).json({
+return res.status(500).json({
     success:false,
     message:"error aa gyi otp wale section m"
 })

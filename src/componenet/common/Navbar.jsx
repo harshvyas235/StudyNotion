@@ -8,6 +8,10 @@ import {useLocation} from 'react-router-dom'
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import {apiconnector} from "../../Services/apiconnector"
 import { categoriesApI } from '../../Services/apis'
+import ProfileDropdown from '../core/Auth/ProfileDropdown'
+import { Check } from '../core/Auth/Check'
+// import { ProfileDropdown } from '../core/Auth/ProfileDropdown'
+// import { ProfileDropdown } from '../core/Auth/ProfileDropdown'
 
 
 
@@ -47,7 +51,7 @@ export const Navbar = () => {
 
 
   return (
-    <div className=' flex max-w-full px-[120px] py-[12px] border-b  m-auto border-richblack-700 border-solid '>
+    <div className=' flex max-w-full px-[120px] py-[12px] border-b bg-[#161D29]  m-auto border-richblack-700 border-solid '>
     <div className='w-[160px] h-[32px]'>
       <img src={logo}></img>
     </div>
@@ -101,7 +105,7 @@ export const Navbar = () => {
     </div>
 
     
-    <div className=' text-white flex gap-3'>
+    <div className=' text-white flex gap-3 items-center justify-center'>
     {
       token===null && 
       <div className='bg-richblack-700 rounded-lg border-richblack-800 text-richblack-100 flex justify-center items-center'>
@@ -115,8 +119,8 @@ export const Navbar = () => {
       user && user?.accountType !="Instructor"&&(
         <div>
         <Link to="/dashboard/cart" >
-           <AiOutlineShoppingCart />
-        </Link>
+           <AiOutlineShoppingCart  className='w-[20px] h-[20px]'/>
+        </Link> 
         </div>
        
       )
@@ -136,7 +140,13 @@ export const Navbar = () => {
     }
 
             {
-                token != null && <div className='text-white'>profile drop down</div>
+              token !== null && <div>
+               
+                <ProfileDropdown/>
+
+              </div>
+                 
+                
             }
             
 
